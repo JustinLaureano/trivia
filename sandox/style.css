@@ -1,6 +1,22 @@
 html, body {
     background-color: gainsboro;
 }
+a {
+    text-decoration: none;
+    color: #5a6772;
+}
+
+a:hover {
+    color: #2b2b2b;
+}
+
+p {
+    font-size: 24px;
+}
+
+#quiz {
+    text-align: center;
+}
 
 .grid {
     width: 600px;
@@ -53,10 +69,18 @@ html, body {
     outline: 0;
 }
 
-#score {
+#score, #playAgain {
     color: #5a6772;
     text-align: center;
     font-size: 30px;
+}
+
+#playAgain {
+    font-size: 24px;
+}
+
+#restart {
+    text-align: center;
 }
 
 #progress {

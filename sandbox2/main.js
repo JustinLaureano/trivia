@@ -1,3 +1,67 @@
+var startBtn = document.getElementById('start-btn');
+var quizProgress = document.getElementById('progress');
+var quizBox = document.getElementById('quiz-box');
+var warning = document.getElementById('warning');
+
+var titleCard = `<div class="title-card">
+                    <div id="time">Time</div>
+                </div>`;
+
+var questionCard = `<h4 id="question">What movie character does Frank often confuse his life with?</h4>
+                    <div class="buttons">
+                        <button class="btn" id="btn0"><span id="choice0">Eggs</span></button>
+                        <button class="btn" id="btn1"><span id="choice1">Pudding</span></button>
+                        <button class="btn" id="btn2"><span id="choice2">Darko</span></button>
+                        <button class="btn" id="btn3"><span id="choice3">Lambone</span></button>
+                    </div>`;
+
+var scoreCard = `<h4 id="score"></h4>
+                <p id="rank"></p>
+                <a href="index.html" id="restart">
+                    <h4>Play Again</h4>
+                    <i class='fas fa-redo-alt fa-2x'></i>
+                </a>`;
+
+var date = new Date();
+var hour = date.getHours();
+var minute = date.getMinutes();
+var day = date.getDay();
+
+function currentSuffix(hour) {
+    if (hour < 12) {
+        var suffix = "a.m.";
+    } else {
+        var suffix = "p.m.";
+    }
+    return suffix;
+};
+
+function currentHour(hour) {
+    if (hour > 12) {
+        hour -= 12;
+    }
+    return hour;
+};
+
+function currentMinute(minute) {
+    if (minute < 10) {
+        minute = "0" + minute;
+    }
+    return minute;
+}
+
+function currentTime(hour, minute) {
+    var hour = currentHour(hour);
+    var minute = currentMinute(minute);
+    return hour + ":" + minute
+};
+
+function currentDay(day) {
+    var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    day = weekdays[day];
+    return day;
+};
+
 function Quiz(questions) {
     this.score = 0;
     this.questions = questions;
@@ -35,6 +99,8 @@ function populate() {
         showScores();
     }
     else {
+        quizBox.innerHTML = questionCard;
+
         //show question
         var element = document.getElementById("question");
         element.innerHTML = quiz.getQuestionIndex().text + "?";
@@ -66,17 +132,23 @@ function showProgress() {
 };
 
 function showScores() {
-    var gameOverHtml = "<h1>Result</h1>";
-    gameOverHtml += "<h2 id='score'>Your Score: " + quiz.score + "</h2>";
-    gameOverHtml += "<p id='rank'>" + scoreLevel[quiz.score] + "</p>";
-    gameOverHtml += "<a href='index.html'><h2 id='playAgain'>Play Again</h2><i id='restart' class='fas fa-redo-alt'></i></a>";
-    var element = document.getElementById("quiz");
-    element.innerHTML = gameOverHtml;
+    quizBox.innerHTML = scoreCard;
+    var score = document.getElementById('score');
+    var rank = document.getElementById('rank');
+
+    score.innerHTML = "Your Score: " + quiz.score + " out of " + shuffleQuestions.length + ".";
+    rank.innerHTML = scoreLevel[quiz.score];
 };
 
 function shuffle(array) {
 	for(var j, x, i = array.length; i; j = parseInt(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
 	return array;
+};
+
+function quizReset() {
+    shuffleQuestions = shuffle(questions).slice(0,10);
+    var quiz = new Quiz(shuffleQuestions);
+    return quiz;
 };
 
 var scoreLevel = [
@@ -130,7 +202,13 @@ var questions = [
 ];
 
 shuffleQuestions = shuffle(questions).slice(0,10);
-
 var quiz = new Quiz(shuffleQuestions);
 
-populate();
+startBtn.addEventListener('click', function() {
+    quizProgress.style.visibility = 'visible';
+    warning.style.visibility = "hidden";
+    quizBox.innerHTML = titleCard;
+    var titleTime = document.getElementById('time');
+    titleTime.innerHTML = "<h3>" + currentTime(hour, minute) + currentSuffix(hour) +  " on a " + currentDay(day) + "</h3>";
+    setTimeout(populate, 2000);
+});

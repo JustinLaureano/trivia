@@ -1,0 +1,146 @@
+/* * {
+    outline: 1px solid lightcoral;
+} */
+:root {
+    --gold: #F9C900;
+}
+
+html {
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+h1 {
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    line-height: .8;
+}
+
+h2 {
+    font-family: 'Stardos Stencil', cursive;
+    padding: 0;
+    margin: 0;
+    color: var(--gold);
+}
+
+h3 {
+    font-family: 'Lemonada', sans-serif;
+    font-size: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: var(--gold);
+}
+
+#l-its {
+    font-size: 1.5rem;
+    padding-left: 31px;
+}
+
+#l-always {
+    font-size: 2rem;
+}
+
+#l-sunny {
+    font-size: 2.5rem;
+}
+
+#l-in {
+    font-size: 1rem;
+}
+
+#l-philly {
+    font-size: 1.3rem;
+    padding-right: 60px;
+}
+
+#start-btn {
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+#start-btn:hover {
+    color: var(--gold);
+}
+
+#progress {
+    align-self: flex-start;
+    margin: 20px 7.5%;
+    visibility: hidden;
+    font-size: 1.5rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+  }
+  
+#quiz-box {
+    display: flex;
+    flex-direction: column;
+    width: 85vw;
+    height: 65vh;
+    border: 5px solid var(--gold);
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.logo-box {
+    width: 80%;
+    text-align: center;
+}
+
+#question, #score {
+    padding: 0 25px;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.buttons {
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    background-color: black;
+    color: white;
+    font-size: 1.8rem;
+    margin: 5% 0;
+    border: none;
+    width: 50%;
+}
+
+.btn:hover {
+    color: var(--gold);
+    cursor: pointer;
+}
+
+#rank {
+    width: 80%;
+    font-size: 1.3rem;
+}
+
+#warning {
+    visibility: visible;
+}
+
+@media (max-width: 575px) {
+    .btn {
+        width: 100%;
+    }
+}
