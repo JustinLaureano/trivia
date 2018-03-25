@@ -130,6 +130,10 @@ a:hover {
     cursor: pointer;
 }
 
+.btn:focus, .btn:active {
+    outline: none;
+}
+
 #rank {
     width: 80%;
     font-size: 1.3rem;
